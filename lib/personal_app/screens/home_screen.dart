@@ -15,6 +15,17 @@ class HomeScreen extends StatelessWidget {        //StatelessWidget, da sich die
           
           children: [                                                     //Liste der Widgets, die in der Column angezeigt werden 
             Text("Tracke deinen Tag: Ziele setzen & Fortschritt sehen", style: TextStyle(fontSize: 28)),          //Text-Widget mit dem Text "Willkommen!" und Schriftgröße 24
+            
+            SizedBox(height: 20),
+
+            // <<< HIER kommt das Bild >>>
+            Image.asset(
+              'assets/images/DailyTracking.JPG',
+             width: 200,
+            height: 200,
+          ),
+            
+            
             SizedBox(height: 30),                                         //SizedBox fügt einen Abstand von 30 Pixeln ein 
             ElevatedButton(                                               //ElevatedButton ist ein Button mit erhöhter Optik 
               onPressed: () => Navigator.pushNamed(context, "/soll"),     //Beim Drücken des Buttons wird zur Route "/soll" navigiert
