@@ -14,11 +14,11 @@ class HomeScreen extends StatelessWidget {        //StatelessWidget, da sich die
           mainAxisAlignment: MainAxisAlignment.center,                    //Zentriert die Widgets vertikal   
           
           children: [                                                     //Liste der Widgets, die in der Column angezeigt werden 
-            Text("Tracke deinen Tag: Ziele setzen & Fortschritt sehen", style: TextStyle(fontSize: 24)),          //Text-Widget mit dem Text "Willkommen!" und Schriftgröße 24
+            Text("Tracke deinen Tag: Ziele setzen & Fortschritt sehen", style: TextStyle(fontSize: 28)),          //Text-Widget mit dem Text "Willkommen!" und Schriftgröße 24
             SizedBox(height: 30),                                         //SizedBox fügt einen Abstand von 30 Pixeln ein 
             ElevatedButton(                                               //ElevatedButton ist ein Button mit erhöhter Optik 
               onPressed: () => Navigator.pushNamed(context, "/soll"),     //Beim Drücken des Buttons wird zur Route "/soll" navigiert
-              child: Text("Soll-Werte festlegen (Tagesziele)"),                        //Text, der auf dem Button angezeigt wird
+              child: Text("Tagesziele festlegen (Soll-Werte)"),                        //Text, der auf dem Button angezeigt wird
             ),
             SizedBox(height: 20),                                         //SizedBox fügt einen Abstand von 20 Pixeln ein    
             ElevatedButton(                                               //Wieder ein ElevatedButton
