@@ -1,16 +1,54 @@
-# flutter_application_1
+# DailyTracker – Flutter Projekt
 
-A new Flutter project.
+DailyTracker ist eine einfache Flutter-App, mit der Tagesziele (Soll-Werte) 
+für Schritte, Schlaf, Wasser und Kalorien gesetzt und über den Tag hinweg 
+Ist-Werte eingetragen werden können. Die App berechnet den Fortschritt und 
+zeigt klar an, ob ein Tagesziel erreicht wurde.
 
-## Getting Started
+## Funktionen
 
-This project is a starting point for a Flutter application.
+### Tagesziele festlegen
+Benutzer können Soll-Werte definieren:
+- Schritte
+- Schlaf (in Stunden)
+- Wasser (in Litern)
+- Kalorien
 
-A few resources to get you started if this is your first Flutter project:
+### Ist-Werte hinzufügen
+Ist-Werte können beliebig oft ergänzt werden, da sie automatisch zur bisherigen Tagesmenge addiert werden.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Tagesstatistik anzeigen
+Die Statistik zeigt:
+- Soll-Wert
+- Ist-Wert
+- Offen (wenn noch etwas fehlt)
+- **Ziel erreicht** (inkl. grünem Icon, wenn Ist ≥ Soll)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Werte zurücksetzen
+Alle Werte können per Button zurückgesetzt werden.
+
+---
+
+## Technische Umsetzung
+
+- Flutter
+- Dart
+- `ChangeNotifier` + `AppState` als zentraler globaler Speicher
+- Stateful Widgets dort, wo UI auf Änderungen reagieren soll (z. B. Statistik)
+- Named Routes für Navigation
+- Visuelle Rückmeldungen mit Icons & Snackbars
+
+---
+
+## Projektstruktur (Auszug)
+
+lib/
+│
+├─ app_state.dart → globaler Zustand (ChangeNotifier)
+├─ main.dart → App-Aufbau & Navigation
+│
+└─ screens/
+├─ home_screen.dart
+├─ sollwert_screen.dart
+├─ input_screen.dart
+└─ statistik_screen.dart
