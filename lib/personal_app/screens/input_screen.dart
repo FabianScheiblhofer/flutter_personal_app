@@ -27,6 +27,16 @@ class _InputScreenState extends State<InputScreen> {            //State-Klasse f
               _buildTextField("Schlaf (h)", sleepController),
               _buildTextField("Wasser (L)", waterController),
               _buildTextField("Kalorien", caloriesController),  //Jedes Textfeld wird mit seinem eigenen Namen erstellt (erstellt durch die Methode _buildTextField, siehe unten) und bekommt seinen Controller, der durch die Methode verlangt wird
+              SizedBox(height: 10),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Text(
+                  "Hinweis: Die eingegebenen Werte werden zu deinen bisherigen Ist-Werten hinzugefügt. "
+                  "Du kannst deine Tageswerte also auch in mehreren Schritten eintragen.",
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              
               SizedBox(height: 20),                             //SizedBox fügt einen Abstand von 20 Pixeln ein                  
               ElevatedButton(
                 onPressed: () {                                 //Beim Drücken des Buttons "Hinzufügen" wird folgendes ausgeführt

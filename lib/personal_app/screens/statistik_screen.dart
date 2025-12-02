@@ -31,7 +31,7 @@ void dispose() {                                                    //Aufräumen
   @override
   Widget build(BuildContext context) {                          //Überschreiben der build-Methode, die sich in der Main.dart befindet   
     return Scaffold(                                            //Scaffold ist das Grundgerüst eines Screens
-      appBar: AppBar(title: Text("Statistik")),                 //AppBar ist die obere Leiste des Screens            
+      appBar: AppBar(title: Text("Deine Tagesziele im Überblick")),                 //AppBar ist die obere Leiste des Screens            
       body: Padding(                                            //Body ist der Hauptbereich des Screens        
         padding: EdgeInsets.all(20),                            //Padding fügt einen Abstand von 20 Pixeln um den Body hinzu               
         child: Column(                                          //Column ordnet die child-Widgets untereinander an      
@@ -65,19 +65,44 @@ void dispose() {                                                    //Aufräumen
     );
   }
 
-  Widget _buildRow(String label, int soll, int ist) {         //Methode zum Erstellen einer Zeile mit Label-Name, Soll- und Ist-Wert
-    int diff = soll - ist;                                    //Berechnung der Differenz zwischen Soll- und Ist-Wert                   
-    return Padding(                                           //Padding fügt einen Abstand um die Zeile hinzu
-      padding: EdgeInsets.only(bottom: 20),                     //Abstand von 20 Pixeln unten     
-      child: Column(                                          //Column ordnet die child-Widgets untereinander an                
-        crossAxisAlignment: CrossAxisAlignment.start,         //Richtet die Kinder-Widgets der Column am Anfang (links) aus 
-        children: [                                           //Liste der Widgets, die in der Column angezeigt werden            
-          Text(label, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),       //Text-Widget mit dem Label-Namen, Schriftgröße 18 und fetter Schrift
-          Text("Soll: $soll"),                                //Text-Widget mit dem Soll-Wert           
-          Text("Ist:  $ist"),                                 //Text-Widget mit dem Ist-Wert  
-          Text("Offen: $diff"),                               //Text-Widget mit der Differenz zwischen Soll- und Ist-Wert 
-        ],
-      ),
-    );
-  }
+
+Widget _buildRow(String label, int soll, int ist) {  //Methode zum Erstellen einer Zeile mit Label-Name, Soll- und Ist-Wert
+  final bool hasGoal = soll > 0;                     // Nur wenn ein Ziel gesetzt wurde
+  final bool goalReached = hasGoal && ist >= soll;   // Ziel erreicht oder übertroffen
+  final int diff = soll - ist;                        // Berechnung der Differenz zwischen Soll- und Ist-Wert
+  final int offen = diff > 0 ? diff : 0;             // Kein negativer Restwert
+
+  return Padding(                                     //Padding fügt einen Abstand um die Zeile hinzu         
+    padding: EdgeInsets.only(bottom: 20),             //Abstand von 20 Pixeln unten
+    child: Column(                                    //Column ordnet die child-Widgets untereinander an               
+      crossAxisAlignment: CrossAxisAlignment.start,   //Richtet die Kinder-Widgets der Column am Anfang (links) aus
+      children: [                                     //Liste der Widgets, die in der Column angezeigt werden   
+        Row(                                          //Row ordnet die child-Widgets nebeneinander an
+          children: [                                 //Liste der Widgets, die in der Row angezeigt werden                  
+            Text(                             
+              label,                                  
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),    //Text-Widget mit dem Label-Namen, Schriftgröße 18 und fetter Schrift
+            ),
+            SizedBox(width: 8),                       //SizedBox fügt einen Abstand von 8 Pixeln ein              
+            if (hasGoal)                              //Nur anzeigen, wenn ein Ziel gesetzt wurde
+              Icon(                                   //Icon-Widget zur Anzeige eines Symbols
+                goalReached ? Icons.check_circle : Icons.hourglass_bottom,    //Check-Symbol, wenn Ziel erreicht, sonst Sanduhr-Symbol
+                color: goalReached ? Colors.green : Colors.orange,        //Farbe des Symbols: Grün, wenn Ziel erreicht, sonst Orange
+                size: 20,                                                     //Größe des Symbols                      
+              ),
+          ],
+        ),
+        Text("Soll: $soll"),                            //Text-Widget mit dem Soll-Wert
+        Text("Ist:  $ist"),                             //Text-Widget mit dem Ist-Wert              
+        if (hasGoal && !goalReached)                    //Nur anzeigen, wenn ein Ziel gesetzt wurde und noch nicht erreicht ist            
+          Text("Noch offen: $offen"),                   //Text-Widget mit der Differenz zwischen Soll- und Ist-Wert       
+        if (goalReached)                                //Nur anzeigen, wenn das Ziel erreicht wurde         
+          Text(                                         
+            "Tages-Ziel erreicht :)",                   //Text-Widget zur Anzeige einer Erfolgsmeldung
+            style: TextStyle(color: Colors.green),    //Textfarbe Grün
+          ),
+      ],
+    ),
+  );
+}
 }
