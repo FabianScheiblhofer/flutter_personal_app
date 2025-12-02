@@ -31,8 +31,7 @@ class _InputScreenState extends State<InputScreen> {            //State-Klasse f
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Text(
-                  "Hinweis: Die eingegebenen Werte werden zu deinen bisherigen Ist-Werten hinzugefügt. "
-                  "Du kannst deine Tageswerte also auch in mehreren Schritten eintragen.",
+                  "Hinweis: Die Werte, die du hier eingibst, werden zu deinen bisherigen Tageswerten addiert. Du kannst also mehrmals am Tag etwas eintragen.",
                   textAlign: TextAlign.center,
                 ),
               ),
